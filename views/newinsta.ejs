@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Instagram - <%= data.username %></title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #000;
+      color: white;
+      padding: 20px;
+    }
+
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .profile img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 2px solid white;
+    }
+
+    .profile-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .profile-info h1 {
+      font-size: 28px;
+    }
+
+    .profile-info p {
+      margin: 4px 0;
+    }
+
+    .buttons {
+      margin-top: 10px;
+    }
+
+    .buttons button {
+      padding: 8px 16px;
+      margin-right: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background-color: #3897f0;
+      color: white;
+      font-weight: bold;
+    }
+
+    hr {
+      margin: 20px 0;
+      border-color: #333;
+    }
+
+    .highlights {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .highlight {
+      text-align: center;
+    }
+
+    .highlight img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 2px solid white;
+    }
+
+    .posts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+    }
+
+    .post img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .post p {
+      font-size: 14px;
+      margin-top: 5px;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="profile">
+    <img src="<%= data.profileImage %>" alt="profile" />
+    <div class="profile-info">
+      <h1><%= data.username %></h1>
+      <p><strong><%= data.name %></strong></p>
+      <p><%= data.posts.length %> posts &nbsp; <%= data.followers %> followers &nbsp; <%= data.following %> following</p>
+      <div class="buttons">
+        <button>Like</button>
+        <button>Subscribe</button>
+      </div>
+    </div>
+  </div>
+
+  <hr/>
+
+  <div class="highlights">
+    <% data.highlights.forEach(h => { %>
+      <div class="highlight">
+        <img src="<%= h.image %>" alt="highlight" />
+        <p><%= h.title %></p>
+      </div>
+    <% }); %>
+  </div>
+
+  <div class="posts">
+    <% data.posts.forEach(post => { %>
+      <div class="post">
+        <img src="<%= post.image %>" alt="post" />
+        <p>❤️ <%= post.Like %> &nbsp; 💬 <%= post.comments %></p>
+      </div>
+    <% }) %>
+  </div>
+
+</body>
+</html>
